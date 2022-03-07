@@ -17,3 +17,7 @@
 - https://medium.com/@wizart_tech/dockerized-apache-airflow-as-a-single-tool-for-automating-etl-pipelines-for-ml-and-bi-needs-300bb5ab00ab
 
 - https://medium.com/@schinas.georgios/create-a-sagemaker-pipeline-utilising-a-custom-callback-step-31219f63db88
+
+## Theme
+
+- based on https://github.com/cruip/tailwind-dashboard-template

@@ -6,7 +6,7 @@ import Icon from '@/components/icon';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '@/utils/Utils';
 
-function DashboardCardLive({ icon, result }) {
+function DashboardCardLive({ title, icon, result }) {
   // IMPORTANT:
   // Code below is for demo purpose only, and it's not covered by support.
   // If you need to replace dummy data with real data,
@@ -90,15 +90,15 @@ function DashboardCardLive({ icon, result }) {
   };
 
   return (
-    <div className='col-span-full flex flex-col rounded-sm border border-gray-200 bg-white shadow-lg sm:col-span-6'>
+    <div className='col-span-full flex flex-col rounded-sm border border-slate-200 bg-white shadow-lg sm:col-span-6 xl:col-span-4'>
       <div className='px-5 pt-5'>
         <header className='mb-2 flex items-start justify-between'>
           <Icon name={icon} />
-          <Info className='ml-2' containerClassName='min-w-2500'>
+          <Info className='ml-2' containerClassName='min-w-200'>
             <div className='text-center text-lg'>This is a infobox div</div>
           </Info>
         </header>
-        <h2 className='mb-2 font-semibold text-gray-800'>Real Time Value</h2>
+        <h2 className='mb-2 text-lg font-semibold text-slate-800'>{title}</h2>
       </div>
 
       <RealtimeChart data={chartData} width={595} height={248} />

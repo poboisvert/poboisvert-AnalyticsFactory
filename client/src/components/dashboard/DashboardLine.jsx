@@ -7,8 +7,7 @@ import Icon from '@/components/icon';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '@/utils/Utils';
 
-function DashboardCard({ icon, result }) {
-  console.log(icon);
+function DashboardLine({ icon, result, title }) {
   const chartData = {
     labels: [
       '12-01-2020',
@@ -81,7 +80,7 @@ function DashboardCard({ icon, result }) {
           {/* Icon */}
           <Icon name={icon} />
         </header>
-        <h2 className='mb-2 text-lg font-semibold text-slate-800'>Acme Plus</h2>
+        <h2 className='mb-2 text-lg font-semibold text-slate-800'>{title}</h2>
         <div className='mb-1 text-xs font-semibold uppercase text-slate-400'>
           Sales
         </div>
@@ -101,4 +100,4 @@ function DashboardCard({ icon, result }) {
   );
 }
 
-export default React.memo(DashboardCard);
+export default React.memo(DashboardLine);

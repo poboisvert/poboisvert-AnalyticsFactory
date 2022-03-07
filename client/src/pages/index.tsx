@@ -9,8 +9,9 @@ import WelcomeBanner from '@/components/banner/WelcomeBanner';
 import CTA from '@/components/CTA';
 
 import DashboardAvatars from '@/components/dashboard/DashboardAvatars';
-import DashboardCard from '@/components/dashboard/DashboardCard';
+import DashboardLine from '@/components/dashboard/DashboardLine';
 import DashboardLive from '@/components/dashboard/DashboardLive';
+import DashboardBar from '@/components/dashboard/DashboardBar';
 
 type ISession = {
   data?: any;
@@ -114,13 +115,27 @@ function Dashboard() {
 
               {/* Cards */}
               <div className='grid grid-cols-8 gap-6'>
-                <DashboardCard icon='AccountTree' result='+49%' />
-                <DashboardCard icon='AccountTree' result='+49%' />
+                <DashboardLine
+                  title='Apache'
+                  icon='AccountTree'
+                  result='+49%'
+                />
+                <DashboardLine title='NGNIX' icon='AccountTree' result='+49%' />
               </div>
 
               <div className='grid grid-cols-2 gap-6 py-8'>
-                <DashboardLive icon='AccountTree' result='+49%' />
-                <DashboardCard icon='AccountTree' result='+49%' />
+                <DashboardLive
+                  title='XGB Mlogloss'
+                  icon='AccountTree'
+                  result='+49%'
+                />
+                <DashboardLine
+                  title='XGB Recall'
+                  icon='AccountTree'
+                  result='+49%'
+                />
+
+                <DashboardBar />
               </div>
             </div>
           </main>
