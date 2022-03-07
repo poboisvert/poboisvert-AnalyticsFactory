@@ -45,11 +45,9 @@ pred = bst.predict(xg_test)
 error_rate = np.sum(pred != test_Y) / test_Y.shape[0]
 print('Test error using softmax = {}'.format(error_rate))
 
-CHECKPOINT_FILENAME="OK"
 # do the same thing again, but output probabilities
 param['objective'] = 'multi:softprob'
 # bst = xgb.train(param, xg_train, num_round, watchlist)
-# bst = xgb.train(param, xg_train, num_round, watchlist, callbacks=[AimCallback(repo='.', experiment='xgboost_test')])
 bst = xgb.train(param, xg_train, num_round, watchlist, callbacks=[LiveCallback(model_file="model_xgb.json")],)
 # Note: this convention has been changed since xgboost-unity
 # get prediction, this is in 1D array, need reshape to (ndata, nclass)

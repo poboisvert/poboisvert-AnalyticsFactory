@@ -47,6 +47,17 @@ class Live:
         else:
             self._init_paths()
 
+    @property
+    def dir(self):
+        return self._path
+
+    @property
+    def isexists(self):
+        return os.path.isdir(self.dir)
+
+    @property
+    def summary_path(self):
+        return str(self.dir) + ".json"
 
     def _init_paths(self):
         if self._step is not None:
@@ -86,19 +97,6 @@ class Live:
                         f"Overriding {k} with value provided by DVC: {v}"
                     )
                     setattr(self, k, v)
-
-    @property
-    def dir(self):
-        return self._path
-
-    @property
-    def isexists(self):
-        return os.path.isdir(self.dir)
-
-    @property
-    def summary_path(self):
-        return str(self.dir) + ".json"
-
 
     def log(self, name: str, val: Union[int, float]):
         if not Scalar.could_log(val):

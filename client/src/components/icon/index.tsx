@@ -13,4 +13,4 @@ const Icon = ({ name, ...rest }: NextImageProps) => {
   ) : null;
 };
 
-export default Icon;
+export default React.memo(Icon);
