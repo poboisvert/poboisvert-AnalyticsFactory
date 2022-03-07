@@ -1,11 +1,13 @@
-# You should download and extract the data beforehand. Simply by doing this: 
 # wget https://archive.ics.uci.edu/ml/machine-learning-databases/dermatology/dermatology.data
 
 from __future__ import division
 
 import numpy as np
 import xgboost as xgb
-#from aim.xgboost import AimCallback
+import logging
+from integration.xgb import LiveCallback
+
+logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
 # label need to be 0 to num_class -1
 data = np.loadtxt('./dermatology.data', delimiter=',',
@@ -33,6 +35,7 @@ param['eta'] = 0.1
 param['max_depth'] = 6
 param['nthread'] = 4
 param['num_class'] = 6
+param['eval_metric'] = 'mlogloss'
 
 watchlist = [(xg_train, 'train'), (xg_test, 'test')]
 num_round = 50
@@ -42,10 +45,12 @@ pred = bst.predict(xg_test)
 error_rate = np.sum(pred != test_Y) / test_Y.shape[0]
 print('Test error using softmax = {}'.format(error_rate))
 
+CHECKPOINT_FILENAME="OK"
 # do the same thing again, but output probabilities
 param['objective'] = 'multi:softprob'
+# bst = xgb.train(param, xg_train, num_round, watchlist)
 # bst = xgb.train(param, xg_train, num_round, watchlist, callbacks=[AimCallback(repo='.', experiment='xgboost_test')])
-bst = xgb.train(param, xg_train, num_round, watchlist)
+bst = xgb.train(param, xg_train, num_round, watchlist, callbacks=[LiveCallback(model_file="model_xgb.json")],)
 # Note: this convention has been changed since xgboost-unity
 # get prediction, this is in 1D array, need reshape to (ndata, nclass)
 pred_prob = bst.predict(xg_test).reshape(test_Y.shape[0], 6)
