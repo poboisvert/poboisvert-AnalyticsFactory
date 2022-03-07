@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Link from 'next/link';
 
-import LineChart from '@/charts/LineChart01';
+import LineChart from '@/charts/LineChart';
 import Icon from '@/components/icon';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '@/utils/Utils';
 
-function DashboardCard01() {
+function DashboardCard({ icon, result }) {
+  console.log(icon);
   const chartData = {
     labels: [
       '12-01-2020',
@@ -40,10 +41,10 @@ function DashboardCard01() {
     datasets: [
       // Indigo line
       {
-        data: [
-          732, 610, 610, 504, 504, 504, 349, 349, 504, 342, 504, 610, 391, 192,
-          154, 273, 191, 191, 126, 263, 349, 252, 423, 622, 470, 532,
-        ],
+        data: Array.from(
+          { length: 27 },
+          (_, i) => i + Math.floor(Math.random() * 350)
+        ),
         fill: true,
         backgroundColor: `rgba(${hexToRGB(
           tailwindConfig().theme.colors.blue[500]
@@ -58,10 +59,10 @@ function DashboardCard01() {
       },
       // Gray line
       {
-        data: [
-          532, 532, 532, 404, 404, 314, 314, 314, 314, 314, 234, 314, 234, 234,
-          314, 314, 314, 388, 314, 202, 202, 202, 202, 314, 720, 642,
-        ],
+        data: Array.from(
+          { length: 27 },
+          (_, i) => i + Math.floor(Math.random() * 550)
+        ),
         borderColor: tailwindConfig().theme.colors.slate[300],
         borderWidth: 2,
         tension: 0,
@@ -78,7 +79,7 @@ function DashboardCard01() {
       <div className='px-5 pt-5'>
         <header className='mb-2 flex items-start justify-between'>
           {/* Icon */}
-          <Icon name='AccountTree' />
+          <Icon name={icon} />
         </header>
         <h2 className='mb-2 text-lg font-semibold text-slate-800'>Acme Plus</h2>
         <div className='mb-1 text-xs font-semibold uppercase text-slate-400'>
@@ -87,7 +88,7 @@ function DashboardCard01() {
         <div className='flex items-start'>
           <div className='mr-2 text-3xl font-bold text-slate-800'>$24,780</div>
           <div className='rounded-full bg-green-500 px-1.5 text-sm font-semibold text-white'>
-            +49%
+            {result}
           </div>
         </div>
       </div>
@@ -100,4 +101,4 @@ function DashboardCard01() {
   );
 }
 
-export default DashboardCard01;
+export default React.memo(DashboardCard);

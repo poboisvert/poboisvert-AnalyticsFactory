@@ -19,11 +19,6 @@ function Sidebar() {
         <div className='space-y-8'>
           {/* Pages group */}
           <div className='flex flex-col items-center'>
-            <h3 className='pl-3 text-xs font-semibold uppercase text-slate-500'>
-              <span className='lg:sidebar-expanded:block lg:hidden 2xl:block'>
-                Pages
-              </span>
-            </h3>
             <ul className='mt-3'>
               {/* Dashboard */}
               <li

@@ -25,7 +25,7 @@ Chart.register(
   Tooltip
 );
 
-function LineChart01({ data, width, height }) {
+function LineChart({ data, width, height }) {
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -81,4 +81,4 @@ function LineChart01({ data, width, height }) {
   return <canvas ref={canvas} width={width} height={height}></canvas>;
 }
 
-export default LineChart01;
+export default LineChart;

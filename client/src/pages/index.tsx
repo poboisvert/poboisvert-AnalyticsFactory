@@ -5,12 +5,12 @@ import { signIn, useSession } from 'next-auth/react';
 
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
-import WelcomeBanner from '@/components/partials/dashboard/WelcomeBanner';
+import WelcomeBanner from '@/components/banner/WelcomeBanner';
 import CTA from '@/components/CTA';
 
-import DashboardAvatars from '@/components/partials/dashboard/DashboardAvatars';
-import DashboardCard01 from '@/components/partials/dashboard/DashboardCard01';
-import DashboardCard02 from '@/components/partials/dashboard/DashboardCard02';
+import DashboardAvatars from '@/components/dashboard/DashboardAvatars';
+import DashboardCard from '@/components/dashboard/DashboardCard';
+import DashboardLive from '@/components/dashboard/DashboardLive';
 
 type ISession = {
   data?: any;
@@ -18,11 +18,6 @@ type ISession = {
 
 function Dashboard() {
   const { data: session }: ISession = useSession();
-
-  const signInHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    signIn();
-  };
 
   return (
     <Layout>
@@ -119,13 +114,13 @@ function Dashboard() {
 
               {/* Cards */}
               <div className='grid grid-cols-8 gap-6'>
-                <DashboardCard01 />
-                <DashboardCard02 />
+                <DashboardCard icon='AccountTree' result='+49%' />
+                <DashboardCard icon='AccountTree' result='+49%' />
               </div>
 
               <div className='grid grid-cols-2 gap-6 py-8'>
-                <DashboardCard01 />
-                <DashboardCard02 />
+                <DashboardLive icon='AccountTree' result='+49%' />
+                <DashboardCard icon='AccountTree' result='+49%' />
               </div>
             </div>
           </main>
